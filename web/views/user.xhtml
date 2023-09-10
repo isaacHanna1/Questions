@@ -1,0 +1,54 @@
+<?xml version = "1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html  xmlns = "http://www.w3.org/1999/xhtml"   
+          xmlns:h = "http://java.sun.com/jsf/html"
+          xmlns:ui = "http://java.sun.com/jsf/facelets"
+          xmlns:f="http://java.sun.com/jsf/core">
+      
+   <body>
+       <ui:composition template = "template/common.xhtml">	
+           <ui:define name="content">
+                <h:form>
+            <h:panelGrid columns="2">
+                <h:outputLabel value="User Name :"/>
+                <h:inputText value="#{backingAddNewUser.user.userName}" 
+                             required="true" requiredMessage=" Please Enter Value "/>
+                <h:outputLabel value=""/>
+                <h:commandButton value="add" action="#{backingAddNewUser.saveUser()}"/>
+            </h:panelGrid>
+        </h:form>
+        
+           <h:dataTable value="#{backingUser.findAllUsers()}" var="userList">
+              <h:column>
+                <f:facet name="header">Edit</f:facet>
+                 <h:form>
+                    
+                     <h:commandLink value="Edit" action="#{backingUser.edit(userList)}"/>
+                 </h:form>    
+              </h:column> 
+            <h:column>
+                <f:facet name="header">Id</f:facet>
+                #{userList.id}
+            </h:column>
+            <h:column>
+                <f:facet name="header">User Name</f:facet>
+                #{userList.userName}
+            </h:column>
+            <h:column>
+                <f:facet name="header">action</f:facet>
+                <h:form>
+                    <h:commandLink value="Del" action="#{backingUser.delete(userList)}" />
+                </h:form>
+            </h:column>
+                   
+                   <f:facet name="footer">
+                       <h:outputLabel value=" Total Of User : #{backingUser.findAllUsers().size()}"/>
+                   </f:facet>
+        </h:dataTable>
+           </ui:define>
+       
+       </ui:composition>
+   </body>
+</html>

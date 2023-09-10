@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets">
+    <head>
+        <title>Competition</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    </head>
+    <h:body>
+        <ui:composition template="template/common.xhtml">
+            <ui:define name="content">
+                <h:dataTable value="#{BackingShowCompetition.findingQuestionOfCompetition()}" var="questionList">
+                    <h:column>
+                    <f:facet name="header">Id</f:facet>
+                    #{questionList.id}
+                    </h:column>
+                    <h:column>
+                    <f:facet name="header">Question Statement</f:facet>
+                    #{questionList.questionStatment}
+                    </h:column>
+                    <h:column>
+                    <f:facet name="header">Answer 1</f:facet>
+                    #{questionList.answer1}
+                    </h:column>
+                    <h:column>
+                    <f:facet name="header">Answer 2</f:facet>
+                    #{questionList.answer2}
+                    </h:column>
+                    <h:column>
+                    <f:facet name="header">Answer 3</f:facet>
+                    #{questionList.answer3}
+                    </h:column>
+                    <h:column>
+                    <f:facet name="header">Answer 4</f:facet>
+                    #{questionList.answer4}
+                    </h:column>
+                    <h:column>
+                    <f:facet name="header">Correct Answer</f:facet>
+                    #{questionList.correctAnswer}
+                    </h:column>
+                    <h:column>
+                    <f:facet name="header">Num Of Points</f:facet>
+                    #{questionList.numberOfPoints}
+                    </h:column>
+                    <h:column>
+                    <f:facet name="header">Competition name</f:facet>
+                    #{questionList.competition.competitionName}
+                    </h:column>
+                    <h:column>
+                    <f:facet name="header">Actions</f:facet>
+                    <h:form>
+                        <h:commandLink value="Delete" action="#{backingDeleteQuestion.DeleteQuestion(questionList)}"/>
+                        <h:commandLink value="Edit" action="#{backingQuestion.editQuestion(questionList)}"/>
+                    </h:form>
+                    
+                    </h:column>
+                    
+                </h:dataTable>
+            </ui:define>
+        </ui:composition>
+    </h:body>
+</html>
